@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danielad <danielad@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/03 12:44:45 by danielad          #+#    #+#             */
+/*   Updated: 2026/03/03 13:15:50 by danielad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -8,20 +20,17 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-
 # define KEY_ESC 	65307
 
 # define W_KEY		119
 # define S_KEY		115
 # define A_KEY		97
 # define D_KEY		100
- 
 
 # define UP_KEY		65362
 # define DOWN_KEY	65364
 # define LEFT_KEY	65361
 # define RIGHT_KEY	65363
-
 
 # define WALL		'1'
 # define FLOOR		'0'
@@ -29,14 +38,13 @@
 # define TREASURE	'C'
 # define PLAYER		'P'
 
-
 typedef struct s_image
 {
 	void	*img;
 	int		width;
 	int		height;
 	int		sprite_count;
-} t_image;
+}	t_image;
 
 typedef struct s_map
 {
@@ -45,15 +53,14 @@ typedef struct s_map
 	int		rows;
 	int		colums;
 
-} t_map;
+}	t_map;
 
 typedef struct s_player
 {
 	int		pos_y;
 	int		pos_x;
 	int		move_count;
-} t_player;
-
+}	t_player;
 
 typedef struct s_game
 {
@@ -61,13 +68,12 @@ typedef struct s_game
 	void		*win_ptr;
 	t_map		map;
 	t_image		wall;
-	t_image		player_image;
+	t_image		pl_img;
 	t_image		floor;
 	t_image		treasures;
 	t_image		exit;
 	t_player	player;
-} t_game;
-
+}	t_game;
 
 void	wall_check(t_game *game);
 void	sprite_num(t_game *game);
@@ -98,6 +104,5 @@ void	render_map(t_game *game);
 void	count_lines(t_game *game, char *argv);
 void	fill_grid(t_game *game, char *argv);
 int		main(int argc, char *argv[]);
-
 
 #endif

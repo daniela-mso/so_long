@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danielad <danielad@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/03 12:50:03 by danielad          #+#    #+#             */
+/*   Updated: 2026/03/03 13:56:40 by danielad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	wall_check(t_game *game)
@@ -31,7 +43,7 @@ void	sprite_num(t_game *game)
 	int	x;
 
 	y = 0;
-	game->player_image.sprite_count = 0;
+	game->pl_img.sprite_count = 0;
 	game->treasures.sprite_count = 0;
 	game->exit.sprite_count = 0;
 	while (y < game->map.rows)
@@ -40,7 +52,7 @@ void	sprite_num(t_game *game)
 		while (x < game->map.colums)
 		{
 			if (game->map.grid[y][x] == PLAYER)
-				game->player_image.sprite_count++;
+				game->pl_img.sprite_count++;
 			if (game->map.grid[y][x] == TREASURE)
 				game->treasures.sprite_count++;
 			if (game->map.grid[y][x] == EXIT)
@@ -49,11 +61,12 @@ void	sprite_num(t_game *game)
 		}
 		y++;
 	}
-	if (game->player_image.sprite_count != 1 || game->treasures.sprite_count <= 0 || game->exit.sprite_count != 1)
+	if (game->pl_img.sprite_count != 1 || game->treasures.sprite_count <= 0
+		|| game->exit.sprite_count != 1)
 		error_exit(game, "Invalid number of sprites");
 }
 
-void	lines_and_chars(t_game *game)// checks for empty line and invalid char
+void	lines_and_chars(t_game *game)
 {
 	int	y;
 	int	x;
@@ -68,7 +81,10 @@ void	lines_and_chars(t_game *game)// checks for empty line and invalid char
 			error_exit(game, "Not a proper rectangle");
 		while (x < game->map.colums)
 		{
-			if (game->map.grid[y][x] != 'P' && game->map.grid[y][x] != 'C' && game->map.grid[y][x] != '0' && game->map.grid[y][x] != '1' && game->map.grid[y][x] != 'E')
+			if (game->map.grid[y][x] != 'P' && game->map.grid[y][x] != 'C'
+					&& game->map.grid[y][x] != '0'
+						&& game->map.grid[y][x] != '1'
+							&& game->map.grid[y][x] != 'E')
 				error_exit(game, "Invalid char found");
 			x++;
 		}

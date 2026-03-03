@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_path.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danielad <danielad@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/03 12:51:02 by danielad          #+#    #+#             */
+/*   Updated: 2026/03/03 12:51:39 by danielad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 char	**copy_map(t_game *game)
@@ -42,7 +54,7 @@ void	find_player(char **map_copy, t_game *game)
 
 void	flood_fill(char	**map_copy, t_game *game, int row, int col)
 {
-	if (row < 0 || col < 0 || row >= game->map.rows || col >= game->map.colums) //this is a bit of a redundant check size if already did checks to prevent this, but anyway...
+	if (row < 0 || col < 0 || row >= game->map.rows || col >= game->map.colums)
 		return ;
 	if (map_copy[row][col] == '1' || map_copy[row][col] == 'F')
 		return ;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danielad <danielad@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/03 12:46:17 by danielad          #+#    #+#             */
+/*   Updated: 2026/03/03 14:06:12 by danielad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	render_map(t_game *game)
@@ -29,8 +41,9 @@ void	count_lines(t_game *game, char *argv)
 	game->map.colums = 0;
 	map_fd = open(argv, O_RDONLY);
 	if (map_fd == -1)
-		error_exit(game,"File descriptor not found");//maybe change this to something that frees everything
-	while ((line = get_next_line(map_fd)) != NULL)
+		error_exit(game, "File descriptor not found");
+	line = get_next_line(map_fd);
+	while (line != NULL)
 	{
 		if (i-- == 1)
 		{
@@ -40,6 +53,7 @@ void	count_lines(t_game *game, char *argv)
 		}
 		game->map.rows++;
 		free(line);
+		line = get_next_line(map_fd);
 	}
 	close(map_fd);
 }
@@ -78,7 +92,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_printf("Error\nUsage: Wrong number of arguments\n");
+		ft_printf("Error\nUsage: Wrong argument/ number of arguments\n");
 		return (1);
 	}
 	if (check_ber_file(argv[1]) == 0)
@@ -90,9 +104,9 @@ int	main(int argc, char *argv[])
 	count_lines(&game, argv[1]);
 	fill_grid(&game, argv[1]);
 	check_map(&game);
-	game_init(&game);// Initialize MLX, Window, and Hooks
-	sprites_init(&game);//Load the .xpm files into memory
-	render_map(&game);//  Draw the actual map to the window
-	mlx_loop(game.mlx_ptr);// Hand control over to MLX 
+	game_init(&game);
+	sprites_init(&game);
+	render_map(&game);
+	mlx_loop(game.mlx_ptr);
 	return (0);
 }

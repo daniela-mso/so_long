@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: danielad <danielad@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/03 12:49:48 by danielad          #+#    #+#             */
+/*   Updated: 2026/03/03 13:14:16 by danielad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	destroy_img(t_game *game)
@@ -8,8 +20,8 @@ void	destroy_img(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->wall.img);
 	if (game->exit.img)
 		mlx_destroy_image(game->mlx_ptr, game->exit.img);
-	if (game->player_image.img)
-		mlx_destroy_image(game->mlx_ptr, game->player_image.img);
+	if (game->pl_img.img)
+		mlx_destroy_image(game->mlx_ptr, game->pl_img.img);
 	if (game->treasures.img)
 		mlx_destroy_image(game->mlx_ptr, game->treasures.img);
 }
